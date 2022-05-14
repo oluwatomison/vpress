@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../actions";
 import ProductComponent from "../component/products/product_component";
 import ProductGrid from "../component/products/product_grid";
-import ApiConsumption from "../utils/apiConsumption";
 
 const AllProduct = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
-    ApiConsumption.getProducts().then((res) => {
-      setProducts(res);
-    });
+    dispatch(actions.getAllProductInfo())
   }, []);
+
+const newProducts = useSelector((state)=> state.productData.productData.Products || [])
 
   return (
     <ProductGrid>
-      {products.map((product, index) => {
+      {newProducts.map((product, index) => {
         return (
           <ProductComponent
             key={index}
@@ -28,5 +29,6 @@ const AllProduct = () => {
     </ProductGrid>
   );
 };
+
 
 export default AllProduct;
