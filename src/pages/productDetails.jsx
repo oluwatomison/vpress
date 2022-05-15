@@ -7,7 +7,7 @@ import DetailsWriteUp from "../component/productDetails/detailsWriteUps";
 import ProductDetailLayout from "../component/productDetails/productDetailLayout";
 import Toast from "../utils/Toast";
 
-const ProductDetailPage = ({props}) => {
+const ProductDetailPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ const ProductDetailPage = ({props}) => {
   }, []);
 
   const singleProduct = useSelector((state)=> state.productData.productWithProductId)
-  
+ 
   return (
         <>
             {singleProduct ? 
@@ -38,7 +38,7 @@ const ProductDetailPage = ({props}) => {
                         />
                     </ProductDetailLayout>
                 ) : (
-                        <div className="h-full flex items-center bg-cyan-100 justify-center text-[#d03859]">
+                        <div className="h-full flex items-center bg-[#fff8f9] justify-center text-[#d03859]">
                         Loading...
                         </div>
                     )}

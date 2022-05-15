@@ -1,22 +1,19 @@
 import { applyMiddleware, createStore, compose } from "redux";
-import thunkMiddleware from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
-import LogRocket from "logrocket";
 import rootReducer from "../reducers";
+import { middlewares } from "../configureStore";
 
-let middleware = [thunkMiddleware];
+/**
+ * Create a testing store with imported reducers, middleware and initial state.
+ * globals: rootReducer
+ * @param {*} initialState -- initial state for store
+ * @function storeFactory
+ * @returns {store} - Redux Store.
+ */
 
-if (process.env.NODE_ENV === "production") {
-     middleware = [thunkMiddleware, LogRocket.reduxMiddleware()];
-}
-
-const composeEnhancers = composeWithDevTools({
-     // options like actionSanitizer, stateSanitizer
-});
-
-const store = createStore(
-     rootReducer,
-     composeEnhancers(compose(applyMiddleware(...middleware)))
-);
-
-export default store;
+export const storeFactory = (initialState) => {
+     return createStore(
+          rootReducer,
+          initialState,
+          applyMiddleware(...middlewares)
+     );
+};

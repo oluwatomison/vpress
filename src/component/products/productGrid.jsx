@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types"
 
 const ProductGrid = ({ children }) => {
   return (
@@ -7,5 +8,9 @@ const ProductGrid = ({ children }) => {
     </div>
   );
 };
+
+ProductGrid.propTypes = {
+  children: PropTypes.array
+}
 
 export default ProductGrid;

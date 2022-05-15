@@ -1,5 +1,7 @@
 import React from "react";
 import CustomButton from "../button/customButton";
+import PropTypes from "prop-types"
+
 const DetailsWriteUp = ({ title, description, onBuy }) => {
   return (
     <div className="flex flex-col w-full items-center text-center text-[#fff] justify-between p-8 rounded-md bg-[#fff]">
@@ -15,4 +17,11 @@ const DetailsWriteUp = ({ title, description, onBuy }) => {
     </div>
   );
 };
+
+DetailsWriteUp.propTypes = {
+  title:PropTypes.string.isRequired,
+  description:PropTypes.string.isRequired,
+  onBuy:PropTypes.func.isRequired
+}
+
 export default DetailsWriteUp;

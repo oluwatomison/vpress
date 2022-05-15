@@ -1,5 +1,7 @@
 import React from "react";
-const Card = ({ img, inStock, price }) => {
+import PropTypes from "prop-types"
+
+const Card = ({ img, inStock}) => {
   return (
     <div className="w-full md:w-9/12 lg:w-5/12 h-[500px] bg-white relative rounded-md overflow-clip">
       <img
@@ -17,5 +19,10 @@ const Card = ({ img, inStock, price }) => {
     </div>
   );
 };
+
+Card.propTypes = {
+  img:PropTypes.string.isRequired,
+  inStock:PropTypes.bool.isRequired
+}
 
 export default Card;

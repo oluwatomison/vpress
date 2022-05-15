@@ -3,7 +3,8 @@ import { backgroundImage } from "./assets/jpg";
 import Content from "./component/content";
 import { Provider } from 'react-redux';
 import AppRouter from './routers'
-import store from "./store/store";
+import { storeFactory } from "./store/store";
+//import store from "./store/store";
 
 const STYLE = {
   backgroundImage: `url(${backgroundImage})`,
@@ -13,13 +14,15 @@ const STYLE = {
 };
 
 function App() {
+  let initialState = {}
+   const store = storeFactory(initialState);
   return (
     <Provider store={store}>
-    <div className="w-screen h-screen overflow-auto" style={STYLE}>
-        <Content>
-          <AppRouter/> 
-        </Content>
-    </div>
+      <div data-test="component-app" className="w-screen h-screen overflow-auto" style={STYLE}>
+          <Content>
+            <AppRouter/> 
+          </Content>
+      </div>
     </Provider>
   );
 }

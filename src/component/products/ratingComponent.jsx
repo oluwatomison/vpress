@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types"
+
 const STYLE = {
   clipPath:
     "polygon(50% 5%, 61% 40%, 98% 40%, 68% 62%, 79% 96%, 50% 75%, 21% 96%, 32% 62%, 2% 40%, 39% 40%)",
@@ -11,4 +13,8 @@ const RatingStar = ({ fraction }) => {
     </div>
   );
 };
+
+RatingStar.propTypes = {
+  width:PropTypes.string
+}
 export default RatingStar;

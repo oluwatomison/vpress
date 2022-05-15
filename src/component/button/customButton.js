@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Children } from "react";
+import PropTypes from "prop-types";
 
 const CustomButton = ({ onClick, children }) => {
      return (
@@ -11,4 +12,8 @@ const CustomButton = ({ onClick, children }) => {
      );
 };
 
+CustomButton.propTypes = {
+     onClick: PropTypes.func.isRequired,
+     children: PropTypes.string.isRequired,
+};
 export default CustomButton;
