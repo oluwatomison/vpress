@@ -22,6 +22,25 @@ const getAllProducts = () => {
           }
      });
 };
+
+const getProductWithProductId = (productId) => {
+     return new Promise(async (resolve, reject) => {
+          try {
+               const { data, error } = await axiosData({
+                    method: "GET",
+                    url: `${config.apiGateway.BASE_API_URL}/product/${productId}.json`,
+               });
+               if (data) {
+                    resolve(data);
+               } else {
+                    reject(error);
+               }
+          } catch (ex) {
+               reject(ex);
+          }
+     });
+};
 export default {
      getAllProducts,
+     getProductWithProductId,
 };

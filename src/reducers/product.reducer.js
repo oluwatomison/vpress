@@ -2,29 +2,29 @@ import * as types from "../constants/ActionTypes";
 
 const INITIAL_STATE = {
      error: "",
-     productData: [],
+     allProducts: [],
+     productWithProductId: null,
 };
 
 const productData = (state, action) => {
      return {
           ...state,
-          productData: action.payload,
+          allProducts: action.payload,
      };
 };
 
-const productFail = (state, action) => {
+const oneProductData = (state, action) => {
      return {
           ...state,
-          error: action.payload,
+          productWithProductId: action.payload,
      };
 };
-
 export default (state = INITIAL_STATE, action) => {
      switch (action.type) {
           case types.userConstants.PRODUCT_DATA:
                return productData(state, action);
-          case types.userConstants.PRODUCT_FAIL:
-               return productFail(state, action);
+          case types.userConstants.GET_ONE_PRODUCT:
+               return oneProductData(state, action);
           default:
                return state;
      }
