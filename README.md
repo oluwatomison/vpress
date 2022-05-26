@@ -23,3 +23,7 @@ Running the test file.
 
 I am using Enzyme version 3.11.0 with @wojtekmaj/enzyme-adapter-react-17 version 0.6.6
 Moxios to mock api calls
+
+### Test hosted on netlify
+
+https://moonpig.netlify.app/
