@@ -1,16 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const ProductGrid = ({ children }) => {
+const ProductGrid = ({children}) => {
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 px-10">
       {children}
     </div>
   );
 };
 
 ProductGrid.propTypes = {
-  children: PropTypes.array
-}
+  children: PropTypes.array,
+};
 
 export default ProductGrid;

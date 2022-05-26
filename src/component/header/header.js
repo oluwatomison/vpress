@@ -1,8 +1,6 @@
 import React from "react";
-//import Container from "../container";
 import { Link } from "react-router-dom";
-import { moonPigLOGO } from "../../assets/jpg";
-
+import dominLogo from "../../assets/image/domin-logo.png";
 const Header = () => {
      return (
           <header className="fixed top-0 right-0 left-0 bg-[#fff8f9] z-50">
@@ -12,9 +10,12 @@ const Header = () => {
                     }
                >
                     <Link to="/">
+                         <div>
+                              <h2 className="text-[#000]">ASCEND</h2>
+                         </div>
                          <img
-                              src={moonPigLOGO}
-                              alt="MOONPIG_LOGO"
+                              src={dominLogo}
+                              alt="DOMIN-LOGO"
                               className="h-12"
                          />
                     </Link>
