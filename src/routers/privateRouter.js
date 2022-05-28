@@ -1,10 +1,9 @@
 import {Navigate, useLocation} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-
+import AuthModule from '../modules/Auth.module';
 const PrivateRouter = ({children}) => {
   const location = useLocation();
-  const loginStatus = useSelector((state) => state.userLoginData.userStatus);
-  if (!loginStatus) {
+
+  if (!AuthModule.isUserAuthenticated()) {
     return <Navigate to="/login" state={{path: location.pathname}} />;
   }
 

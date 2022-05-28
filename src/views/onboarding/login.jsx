@@ -1,21 +1,21 @@
 import React from 'react';
-import {Navigate} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import {Navigate, useLocation} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import AuthModule from '../../modules/Auth.module';
 import * as actions from '../../actions';
 import dominLogo from '../../assets/image/domin-logo.png';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
 
-  const handleLogin = (currentLoginState) => {
-    dispatch(actions.allowUserLogin(currentLoginState));
+  const handleLogin = () => {
+    dispatch(actions.allowUserLogin());
   };
-
-  const loginStatus = useSelector((state) => state.userLoginData.userStatus);
 
   const redirectPath = location.state?.path || '/';
 
-  if (loginStatus === true) {
+  if (AuthModule.isUserAuthenticated()) {
     return <Navigate to={redirectPath} replace />;
   }
 
@@ -52,10 +52,9 @@ const Login = () => {
           <div className="bg-[#20677c] h-12 justify-center items-center flex mb-4 rounded-md">
             <p className="text-center text-white">Get Started</p>
           </div>
-
           <div
             className="bg-[#6b6b6b] h-12 justify-center items-center flex rounded-md"
-            onClick={() => handleLogin(true)}>
+            onClick={handleLogin}>
             <p className="text-center text-white">Login</p>
           </div>
         </div>

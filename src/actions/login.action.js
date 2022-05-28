@@ -1,28 +1,27 @@
 import * as types from '../constants/ActionTypes';
 import Toast from '../utils/Toast';
+import AuthModule from '../modules/Auth.module';
 const userLogin = (payload) => {
-  console.log(payload);
   return {
     type: types.userConstants.USER_LOGIN,
     payload,
   };
 };
 
-const allowUserLogin = (currentLoginState) => {
+const allowUserLogin = () => {
   return (dispatch) => {
-    dispatch(userLogin(currentLoginState));
-    if (currentLoginState) {
-      Toast.fire({
-        text: `Welcome New user`,
-        icon: 'success',
-      });
-    } else if (!currentLoginState) {
-      Toast.fire({
-        text: `login user information`,
-        icon: 'error',
-      });
-    }
+    AuthModule.authenticateUser('accesstoken');
+    Toast.fire({
+      text: `Welcome New user`,
+      icon: 'success',
+    });
   };
 };
 
-export {allowUserLogin};
+const logoutUser = () => {
+  return async () => {
+    AuthModule.signOut();
+  };
+};
+
+export {allowUserLogin, logoutUser};
