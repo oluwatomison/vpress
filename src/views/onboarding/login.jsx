@@ -1,7 +1,24 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import * as actions from '../../actions';
 import dominLogo from '../../assets/image/domin-logo.png';
+
 const Login = () => {
+  const dispatch = useDispatch();
+
+  const handleLogin = (currentLoginState) => {
+    dispatch(actions.allowUserLogin(currentLoginState));
+  };
+
+  const loginStatus = useSelector((state) => state.userLoginData.userStatus);
+
+  const redirectPath = location.state?.path || '/';
+
+  if (loginStatus === true) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div>
@@ -35,11 +52,12 @@ const Login = () => {
           <div className="bg-[#20677c] h-12 justify-center items-center flex mb-4 rounded-md">
             <p className="text-center text-white">Get Started</p>
           </div>
-          <Link to="/home">
-            <div className="bg-[#6b6b6b] h-12 justify-center items-center flex rounded-md">
-              <p className="text-center text-white">Login</p>
-            </div>
-          </Link>
+
+          <div
+            className="bg-[#6b6b6b] h-12 justify-center items-center flex rounded-md"
+            onClick={() => handleLogin(true)}>
+            <p className="text-center text-white">Login</p>
+          </div>
         </div>
       </div>
     </div>

@@ -1,21 +1,16 @@
 import React from 'react';
-import RatingStar from './ratingComponent';
-import userRating from '../../hooks/userRatings';
 import PropTypes from 'prop-types';
 
 const ACTIVE = 'Active';
 const ERROR = 'Error';
 const ProductComponent = ({image, serialNo, location, status, type}) => {
-  console.log({image});
   return (
     <div
       data-test="product-component"
-      className="h-[200px] bg-white drop-shadow-xl"
-      //className="flex flex-col items-center justify-between gap-4 w-full h-full rounded-md overflow-hidden bg-white shadow-lg"
-    >
+      className="h-[160px] bg-white drop-shadow-xl">
       <div className="flex p-5">
-        <div className="w-[200px]">
-          <img src={image} />
+        <div className="w-[200px] flex justify-center">
+          <img src={image} className="w-[120px] h-[120px]" />
         </div>
         <div className="w-[200px]">
           <p>
@@ -45,31 +40,6 @@ const ProductComponent = ({image, serialNo, location, status, type}) => {
           </p>
         </div>
       </div>
-      {/* <img
-        src={image}
-        alt="product image"
-        className="w-full h-[300px] object-cover object-center hover:scale-105 transition-all hover:saturate-0"
-        data-test="image-component"
-      /> */}
-      {/* <h4
-        data-test="price-component"
-        className="font-bold text-center text-lg text-[#001f4d]">
-        {price}
-      </h4>
-      <p
-        data-test="title-component"
-        className="text-base text-center text-[#7889a1]">
-        {name}
-      </p>
-      <div data-test="rating-component" className="flex gap-0 justify-center">
-        {ratings}
-      </div>
-      <button
-        data-test="submit-button"
-        className="text-xl font-bold mb-4 text-[#d03859] hover:border-b-2 border-[#d03859] transition-all"
-        onClick={onAdd}>
-        Add to Basket
-      </button> */}
     </div>
   );
 };

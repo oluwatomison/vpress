@@ -7,14 +7,15 @@ import ProductGrid from '../component/products/productGrid';
 import CustomButton from '../component/button/customButton';
 import CustomSearchForm from '../component/search/customSearchForm';
 import {dominData} from '../utils/tempData';
+import Header from '../component/header/header';
 const AllProduct = () => {
   const dispatch = useDispatch();
   const ref = useRef('');
   const [limit, setLimiter] = useState(8);
   const [, setProductFilter] = useState(false);
-  useEffect(() => {
-    dispatch(actions.getAllProductInfo());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(actions.getAllProductInfo());
+  // }, []);
 
   const filter = (val, index) => {
     if (!ref.current.trim()) {
@@ -34,12 +35,11 @@ const AllProduct = () => {
   const handleSubmit = () => {
     setProductFilter((prev) => !prev);
   };
-  console.log({dominData});
   return (
     <>
-      <div className="flex mt-10 sm:mt-0  mb-4 justify-end">
+      {/* <div className="flex mt-10 sm:mt-0  mb-4 justify-end">
         <CustomSearchForm ref={ref} onSubmit={handleSubmit} />
-      </div>
+      </div> */}
       <ProductGrid>
         {dominData &&
           dominData
@@ -49,7 +49,7 @@ const AllProduct = () => {
               return (
                 <Link
                   key={index}
-                  to={`/product/${product?.MoonpigProductNo}/s4 pro/uk/status`}>
+                  to={`/product/${product?.serialno}/${product.type}/${product.location}/${product.status}`}>
                   <ProductComponent
                     key={index}
                     serialNo={product.serialno}

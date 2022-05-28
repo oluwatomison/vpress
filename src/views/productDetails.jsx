@@ -1,50 +1,38 @@
-import React, {useEffect} from 'react';
-import * as actions from '../actions';
+import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import Card from '../component/productDetails/card';
-import DetailsWriteUp from '../component/productDetails/detailsWriteUps';
-import ProductDetailLayout from '../component/productDetails/productDetailLayout';
-import Toast from '../utils/Toast';
+import ProductComponent from '../component/products/productComponent';
+import CustomTab from '../utils/tab/tab';
+import {TabData} from '../utils/tab/tabData';
+import Infopage from './infoPage/infoPage';
+import Configurepage from './configurePage/configurePage';
+import Reportpage from './reportPage/reportPage';
 
 const ProductDetailPage = () => {
-  const dispatch = useDispatch();
-  const {id, type, location, status} = useParams();
-  console.log({id, type, location, status});
-  useEffect(() => {
-    dispatch(actions.getOneProductWithProductId(id));
-  }, []);
-
-  const singleProduct = useSelector(
-    (state) => state.productData.productWithProductId,
-  );
+  const {id, type, location, status, imgurl} = useParams();
+  //console.log({imgurl});
+  const [currentTab, setCurrentTab] = useState('Info');
 
   return (
-    <>
-      {/* {singleProduct ? (
-        <ProductDetailLayout>
-          <Card
-            inStock={singleProduct?.InStock}
-            img={singleProduct?.ImageUrls[0]?.ImageUrl}
-            price={'$50'}
-          />
-          <DetailsWriteUp
-            title={singleProduct?.Title}
-            description={singleProduct?.Description}
-            onBuy={() =>
-              Toast.fire({
-                text: `Item purchased`,
-                icon: 'success',
-              })
-            }
-          />
-        </ProductDetailLayout>
-      ) : (
-        <div className="h-full flex items-center bg-[#fff8f9] justify-center text-[#d03859]">
-          Loading...
-        </div>
-      )} */}
-    </>
+    <div>
+      <div className="pt-[100px]">
+        <h5 className="text-[#6b6b6b]">{id}</h5>
+        <ProductComponent
+          serialNo={id}
+          type={type}
+          location={location}
+          status={status}
+          // image={imgurl}
+        />
+        <CustomTab
+          data={TabData}
+          currentTab={currentTab}
+          setCurrentTab={setCurrentTab}
+        />
+        {currentTab === 'Info' && <Infopage />}
+        {currentTab === 'Configure' && <Configurepage />}
+        {currentTab === 'Reports' && <Reportpage />}
+      </div>
+    </div>
   );
 };
 
