@@ -20,11 +20,7 @@ export default () => (
           </PrivateRouter>
         }>
         <Route index element={<AllProduct />} />
-        <Route
-          exact
-          path="/product/:id/:type/:location/:status"
-          element={<ProductDetailPage />}
-        />
+        <Route exact path="/product/:id" element={<ProductDetailPage />} />
       </Route>
       <Route path="*" element={<p>There's nothing here: 404!</p>} />
     </Routes>

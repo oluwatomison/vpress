@@ -1,26 +1,16 @@
-import React, { useState } from "react";
-import CustomButton from "../button/customButton";
-
-const CustomSearchForm = ({onSubmit },ref) => {
-  const [search, setSearch] = useState("");
-  const handleChange = (e) => {
-    ref.current=e.target.value;
-    setSearch(e.target.value);
-  };
+const CustomSearchForm = (props) => {
+  let {onSubmit, search} = props;
   return (
     <div className="flex flex-wrap items-center gap-4">
       <input
         value={search}
         placeholder="Search Title"
-        onChange={handleChange}
+        onChange={onSubmit}
         type="text"
-        className="outline-none p-4 h-9 border-1 rounded-md border-solid border-[#fff] bg-[#fff] w-[300px] focus:border-none focus:outline-none "
+        className="outline-none p-4 h-9 border-1 rounded-md border-solid border-[#000] bg-[#6b6b6b] text-[#fff] w-[300px] focus:border-none focus:outline-none "
       />
-     <CustomButton onClick={onSubmit}>
-         Search
-     </CustomButton>
     </div>
   );
 };
 
-export default React.forwardRef(CustomSearchForm);
+export default CustomSearchForm;
