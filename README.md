@@ -11,11 +11,15 @@ REACT_APP_BASE_API_URL=https://2033273b-a2a5-4137-8b6a-a6452336bc03.mock.pstmn.i
 
 ### yarn start
 
-install node modules using yarn install
+install node modules before you try to run the application
+
+use yarn install to do this
 
 Run code with yarn start
 
 ### Deployed Site link
+
+The Site was deployed on Netlify
 
 https://dominascend.netlify.app
 
