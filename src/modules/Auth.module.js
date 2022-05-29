@@ -22,7 +22,6 @@ class Auth {
    * @description - check if a token is saved in Local Storage
    */
   static isUserAuthenticated() {
-    console.log('calling me');
     const token = localStorage.getItem('token');
     if (!token) {
       return false;
