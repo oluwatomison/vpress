@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navigate, useLocation} from 'react-router-dom';
+import {Navigate, useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import AuthModule from '../../modules/Auth.module';
 import * as actions from '../../actions';
@@ -8,9 +8,11 @@ import dominLogo from '../../assets/image/domin-logo.png';
 const Login = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     dispatch(actions.allowUserLogin());
+    navigate('/');
   };
 
   const redirectPath = location.state?.path || '/';
