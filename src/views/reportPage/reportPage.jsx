@@ -23,7 +23,7 @@ const Reportpage = () => {
   }
 
   const handleChange = (days, x) => {
-    setCurrentDate(fiterByDate(days));
+    setCurrentDate(filterByDate(days));
     setCurrentTab(x);
   };
 
