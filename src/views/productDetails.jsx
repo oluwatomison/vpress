@@ -55,7 +55,9 @@ const ProductDetailPage = () => {
           {currentTab === 'Configure' && (
             <Configurepage configure={newfilterData[0].configure} />
           )}
-          {currentTab === 'Reports' && <Reportpage />}
+          {currentTab === 'Reports' && (
+            <Reportpage reportData={newfilterData[0].report} />
+          )}
         </div>
       </div>
     );
