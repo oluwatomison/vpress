@@ -1,27 +1,16 @@
 import React, {useState} from 'react';
-import {LineChart, CartesianGrid, Line, XAxis, YAxis} from 'recharts';
+import {LineChart, CartesianGrid, Line} from 'recharts';
 import {tempData} from '../../utils/tempdate';
 
 const Reportpage = () => {
   const [getCurrentDate, setCurrentDate] = useState(filterByDate());
   const [tab, setCurrentTab] = useState('day');
-  const columnData = {
-    temperature: {dataKey: 'temperature', stroke: '#20677c'},
-    spool_position: {dataKey: 'spool_position', stroke: '#8884d8'},
-    pressure: {dataKey: 'pressure', stroke: '#8884d8'},
-    flow_torque: {dataKey: 'flow_torque', stroke: '#8884d8'},
-  };
-  const [columns, setColumns] = useState({
-    temperature: {dataKey: 'temperature', stroke: '#20677c'},
-    pressure: {dataKey: 'pressure', stroke: '#8884d8'},
-  });
-  const [inputs, setInputs] = useState({
-    spool_position: false,
-    temperature: true,
-    pressure: true,
-    flow_torque: false,
-  });
-
+  const [colums, setColums] = useState([
+    {dataKey: 'temperature', stroke: '#20677c'},
+    {dataKey: 'spool_position', stroke: '#8884d8'},
+    {dataKey: 'pressure', stroke: '#8884d8'},
+    {dataKey: 'flow_torque', stroke: '#8884d8'},
+  ]);
   function filterByDate(dateRange = 1) {
     const filteredData = tempData.filter((d) => {
       let timeStamp = new Date().getTime() / 1000;
@@ -38,80 +27,31 @@ const Reportpage = () => {
     setCurrentTab(x);
   };
 
-  function formatXAxis(tickItem) {
-    return new Date(+tickItem).toLocaleDateString('en-US');
-  }
-
-  const handleInputChange = (e) => {
-    const {name, value} = e.target;
-    setInputs({...inputs, [name]: !inputs[name]});
-    const existingColumns = {...columns};
-    if (existingColumns[name]) {
-      delete existingColumns[name];
-    } else {
-      existingColumns[name] = columnData[name];
-    }
-    setColumns(existingColumns);
+  const handleColumnType = () => {
+    setColums();
   };
-
   return (
     <div>
       <div className="flex flex-row space-x-6 pt-5">
-        <div>
+        <div onClick={() => handleColumnType(t)}>
           <p>Spool position</p>
-          <input
-            type="checkbox"
-            checked={inputs['spool_position']}
-            name="spool_position"
-            id="spool_position"
-            onChange={handleInputChange}
-          />
         </div>
         <div>
           <p>Temperature</p>
-          <input
-            type="checkbox"
-            checked={inputs['temperature']}
-            name="temperature"
-            id="temperature"
-            onChange={handleInputChange}
-          />
         </div>
         <div>
           <p>Pressure</p>
-          <input
-            type="checkbox"
-            checked={inputs['pressure']}
-            name="pressure"
-            id="pressure"
-            onChange={handleInputChange}
-          />
         </div>
         <div>
           <p>Flow Torque</p>
-          <input
-            type="checkbox"
-            checked={inputs['flow_torque']}
-            name="flow_torque"
-            id="flow_torque"
-            onChange={handleInputChange}
-          />
         </div>
       </div>
       <LineChart width={500} height={300} data={getCurrentDate}>
-        <XAxis dataKey="date" tickFormatter={formatXAxis} />
-        <YAxis />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-        {Object.values(columns).map((column, i) => {
-          return (
-            <Line
-              key={i}
-              type="monotone"
-              dataKey={column.dataKey}
-              stroke={column.stroke}
-            />
-          );
-        })}
+        <Line type="monotone" dataKey="temperature" stroke="#8884d8" />
+        <Line type="monotone" dataKey="spool_position" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="pressure" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="flow_torque" stroke="#82ca9d" />
       </LineChart>
 
       <div className="flex flex-row space-x-6 pt-5">
