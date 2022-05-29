@@ -55,7 +55,7 @@ const Login = () => {
             <p className="text-center text-white">Get Started</p>
           </div>
           <div
-            className="bg-[#6b6b6b] h-12 justify-center items-center flex rounded-md"
+            className="bg-[#6b6b6b] h-12 justify-center items-center flex rounded-md hover:bg-[#ea6686]"
             onClick={handleLogin}>
             <p className="text-center text-white">Login</p>
           </div>

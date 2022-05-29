@@ -43,6 +43,7 @@ const Reportpage = (props) => {
   }
 
   const handleInputChange = (e) => {
+    console.log(e);
     const {name, checked} = e.target;
     setInputs({...inputs, [name]: checked});
     const existingColumns = {...columns};
@@ -56,9 +57,9 @@ const Reportpage = (props) => {
 
   return (
     <div>
-      <div className="flex flex-row space-x-6 py-5">
+      <div className="flex space-x-3 py-5 overflow-auto">
         <div
-          className={`flex flex-row justify-center items-center space-x-3 bg-[#00aec7] w-40 h-10 hover:bg-[#ea6686] rounded ${
+          className={`flex flex-row justify-center items-center space-x-3 bg-[#00aec7] px-10 h-10 hover:bg-[#ea6686] rounded ${
             inputs.spool_position ? 'bg-[#ea6686]' : 'bg-[#00aec7]'
           }`}>
           <p className="text-[#f3f2f2]">Spool position</p>
@@ -71,7 +72,7 @@ const Reportpage = (props) => {
           />
         </div>
         <div
-          className={`flex flex-row justify-center items-center space-x-3 bg-[#00aec7] w-40 h-10 hover:bg-[#ea6686] rounded ${
+          className={`flex flex-row justify-center items-center space-x-3 bg-[#00aec7] w-40 h-10 px-10 hover:bg-[#ea6686] rounded ${
             inputs.temperature ? 'bg-[#ea6686]' : 'bg-[#00aec7]'
           }`}>
           <p className="text-[#f3f2f2]">Temperature</p>
@@ -84,7 +85,7 @@ const Reportpage = (props) => {
           />
         </div>
         <div
-          className={`flex flex-row justify-center items-center space-x-3 bg-[#00aec7] w-40 h-10 hover:bg-[#ea6686] rounded ${
+          className={`flex flex-row justify-center items-center space-x-3 bg-[#00aec7] w-40 h-10 px-10 hover:bg-[#ea6686] rounded ${
             inputs.pressure ? 'bg-[#ea6686]' : 'bg-[#00aec7]'
           }`}>
           <p className="text-[#f3f2f2]">Pressure</p>
@@ -97,7 +98,7 @@ const Reportpage = (props) => {
           />
         </div>
         <div
-          className={`flex flex-row justify-center items-center space-x-3 bg-[#00aec7] w-40 h-10 hover:bg-[#ea6686] rounded ${
+          className={`flex flex-row justify-center items-center space-x-3 bg-[#00aec7] w-40 h-10 px-10 hover:bg-[#ea6686] rounded ${
             inputs.flow_torque ? 'bg-[#ea6686]' : 'bg-[#00aec7]'
           }`}>
           <p className="text-[#f3f2f2]">Flow Torque</p>
@@ -110,22 +111,23 @@ const Reportpage = (props) => {
           />
         </div>
       </div>
-
-      <LineChart width={500} height={300} data={getCurrentDate}>
-        <XAxis dataKey="date" tickFormatter={formatXAxis} />
-        <YAxis />
-        <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-        {Object.values(columns).map((column, i) => {
-          return (
-            <Line
-              key={i}
-              type="monotone"
-              dataKey={column.dataKey}
-              stroke={column.stroke}
-            />
-          );
-        })}
-      </LineChart>
+      <div className="overflow-auto">
+        <LineChart width={500} height={300} data={getCurrentDate}>
+          <XAxis dataKey="date" tickFormatter={formatXAxis} />
+          <YAxis />
+          <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+          {Object.values(columns).map((column, i) => {
+            return (
+              <Line
+                key={i}
+                type="monotone"
+                dataKey={column.dataKey}
+                stroke={column.stroke}
+              />
+            );
+          })}
+        </LineChart>
+      </div>
 
       <div className="flex flex-row space-x-6 py-5">
         <div

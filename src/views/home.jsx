@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import * as actions from '../actions';
 import ProductComponent from '../component/products/productComponent';
-import CustomSearchForm from '../component/search/customSearchForm';
+import FilterContent from '../fiterContent';
 
 const AllProduct = () => {
   const dispatch = useDispatch();
@@ -29,27 +29,28 @@ const AllProduct = () => {
 
   const renderComponent = () => {
     return (
-      <>
-        <div className="sm:pt-[15%] md:pt-[10%] lg:pt-[7%]">
-          <CustomSearchForm onSubmit={handleChange} search={search} />
-        </div>
+      <div className="pt-[33%] sm:pt-[10%] md:pt-[13%] xl:pt-[7%] 2xl:pt-[10%] lg:pt-[10%]">
+        <FilterContent
+          showCompanyFilter
+          showMonthFilter
+          onSubmit={handleChange}
+          search={search}
+        />
         <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 pt-[2%]">
-          {products.filter(searchData).map((product, index) => {
-            return (
-              <Link key={index} to={`/product/${product?.serialno}`}>
-                <ProductComponent
-                  key={index}
-                  serialNo={product.serialno}
-                  location={product.location}
-                  status={product.status}
-                  type={product.type}
-                  image={product.imageSRC}
-                />
-              </Link>
-            );
-          })}
+          {products.filter(searchData).map((product, index) => (
+            <Link key={index} to={`/product/${product?.serialno}`}>
+              <ProductComponent
+                key={index}
+                serialNo={product.serialno}
+                location={product.location}
+                status={product.status}
+                type={product.type}
+                image={product.imageSRC}
+              />
+            </Link>
+          ))}
         </div>
-      </>
+      </div>
     );
   };
   return renderComponent();
