@@ -21,10 +21,6 @@ const getAllProductInfo = () => {
     await PRODUCT_API.getAllProducts()
       .then((res) => {
         dispatch(allProducts(res));
-        Toast.fire({
-          text: `All products fetched`,
-          icon: 'success',
-        });
       })
       .catch((ex) => {
         if (ex.response) {

@@ -32,7 +32,7 @@ const Login = () => {
         </div>
         <div className="pt-[100px] flex flex-col ">
           <div
-            className="bg-[#6b6b6b] h-12 justify-center items-center flex rounded-md hover:bg-[#ea6686]"
+            className="bg-[#6b6b6b] h-12 justify-center items-center flex rounded-md hover:bg-[#e9530d]"
             onClick={handleLogin}>
             <p className="text-center text-white">Login</p>
           </div>
