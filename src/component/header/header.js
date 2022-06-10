@@ -17,15 +17,11 @@ const Header = () => {
       <Link to="/">
         <div className="flex items-center">
           <div className="mr-4">
-            <img src={dominLogo} alt="DOMIN-LOGO" className="h-12" />
-          </div>
-          <div>
-            <h2 className="text-[#6b6b6b] text-center font-semibold">ASCEND</h2>
+            <img src={dominLogo} alt="VPRESS-LOGO" className="h-12" />
           </div>
         </div>
       </Link>
       <div className="flex justify-center items-center">
-        <img src={plusIcon} className="w-[50px] h-[50px]" />
         <div className="pl-4 cursor-pointer" onClick={handleSignout}>
           <h6>Log out</h6>
         </div>

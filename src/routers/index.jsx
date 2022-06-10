@@ -1,7 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import AllProduct from '../views/home';
-import ProductDetailPage from '../views/productDetails';
 import Login from '../views/onboarding/login';
 import PrivateRouter from './privateRouter';
 import DefaultLayout from '../layout/defaultLayout';
@@ -20,7 +19,6 @@ export default () => (
           </PrivateRouter>
         }>
         <Route index element={<AllProduct />} />
-        <Route exact path="/product/:id" element={<ProductDetailPage />} />
       </Route>
       <Route path="*" element={<p>There's nothing here: 404!</p>} />
     </Routes>

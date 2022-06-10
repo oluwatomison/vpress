@@ -10,7 +10,26 @@ const getAllProducts = () => {
     try {
       const {data, error} = await axiosData({
         method: 'GET',
-        url: `${config.apiGateway.BASE_API_URL}/get`,
+        url: `${config.apiGateway.BASE_API_URL}`,
+      });
+      if (data) {
+        resolve(data);
+      } else {
+        reject(error);
+      }
+    } catch (ex) {
+      reject(ex);
+    }
+  });
+};
+
+const handlePagination = (page, limit) => {
+  // console.log('Services api', {page, limit});
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data, error} = await axiosData({
+        method: 'GET',
+        url: `${config.apiGateway.BASE_API_URL}?limit=${limit}&page=${page}`,
       });
       if (data) {
         resolve(data);
@@ -24,4 +43,5 @@ const getAllProducts = () => {
 };
 export default {
   getAllProducts,
+  handlePagination,
 };

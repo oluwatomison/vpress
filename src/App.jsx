@@ -2,7 +2,6 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import AppRouter from './routers';
 import {storeFactory} from './store/store';
-//import store from "./store/store";
 
 function App() {
   let initialState = {};
