@@ -9,12 +9,14 @@ const ProductComponent = (props) => {
         <div className="w-2/4">
           <img
             src={image}
+            alt="ITEM-IMAGE"
             className="rounded-tl object-cover w-full h-full hover:scale-105 transition-all hover:saturate-1"
           />
         </div>
         <div className="w-2/4">
           <img
             src={owner.picture}
+            alt="OWNER_IMAGE"
             className="object-fit w-full h-full hover:scale-105 transition-all hover:saturate-1"
           />
         </div>
